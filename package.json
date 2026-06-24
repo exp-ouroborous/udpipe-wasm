@@ -1,0 +1,28 @@
+{
+  "name": "udpipe-wasm",
+  "version": "0.1.0",
+  "description": "UDPipe dependency parser compiled to WebAssembly. Browser-local tokenize/tag/parse to a Universal Dependencies tree.",
+  "license": "MPL-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./udpipe.wasm": "./dist/udpipe.wasm",
+    "./udpipe.glue.js": "./dist/udpipe.glue.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build:wasm": "bash build/build.sh",
+    "build:ts": "tsc && cp src/udpipe.glue.js dist/udpipe.glue.js && cp src/udpipe.wasm dist/udpipe.wasm",
+    "build": "npm run build:wasm && npm run build:ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "fetch:model": "bash test/fetch-model.sh"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}
