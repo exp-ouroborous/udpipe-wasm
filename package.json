@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "description": "UDPipe dependency parser compiled to WebAssembly. Browser-local tokenize/tag/parse to a Universal Dependencies tree.",
   "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exp-ouroborous/udpipe-wasm.git"
+  },
+  "bugs": { "url": "https://github.com/exp-ouroborous/udpipe-wasm/issues" },
+  "homepage": "https://github.com/exp-ouroborous/udpipe-wasm#readme",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
