@@ -1,6 +1,6 @@
 node_modules/
 dist/
 build/.work/
-src/udpipe.glue.js
+src/udpipe.glue.cjs
 src/udpipe.wasm
 test/fixtures/*.udpipe

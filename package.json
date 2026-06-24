@@ -10,12 +10,12 @@
   "exports": {
     ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
     "./udpipe.wasm": "./dist/udpipe.wasm",
-    "./udpipe.glue.js": "./dist/udpipe.glue.js"
+    "./udpipe.glue.cjs": "./dist/udpipe.glue.cjs"
   },
   "files": ["dist"],
   "scripts": {
     "build:wasm": "bash build/build.sh",
-    "build:ts": "tsc && cp src/udpipe.glue.js dist/udpipe.glue.js && cp src/udpipe.wasm dist/udpipe.wasm",
+    "build:ts": "tsc && cp src/udpipe.glue.cjs dist/udpipe.glue.cjs && cp src/udpipe.wasm dist/udpipe.wasm",
     "build": "npm run build:wasm && npm run build:ts",
     "test": "vitest run",
     "test:watch": "vitest",
