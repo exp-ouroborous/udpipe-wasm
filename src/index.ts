@@ -1,5 +1,5 @@
-import { parseConllu } from "./conllu";
-import type { DependencyTree, UDToken } from "./types";
+import { parseConllu } from "./conllu.js";
+import type { DependencyTree, UDToken } from "./types.js";
 
 export type { UDToken, DependencyTree };
 export { parseConllu };

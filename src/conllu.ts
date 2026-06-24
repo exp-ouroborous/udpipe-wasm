@@ -1,4 +1,4 @@
-import type { UDToken, DependencyTree } from "./types";
+import type { UDToken, DependencyTree } from "./types.js";
 
 /**
  * Parse a CoNLL-U string (one sentence's worth is typical) into a flat token
