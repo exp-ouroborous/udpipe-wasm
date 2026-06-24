@@ -1,0 +1,31 @@
+name: Publish to npm
+
+# Publishes when you cut a GitHub Release. Requires an NPM_TOKEN repo secret
+# (npm automation token with publish rights). The package builds the wasm in CI
+# and ships only dist/ (no model) — see package.json "files".
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write   # for npm provenance
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 6.0.1
+      - run: npm ci
+      - run: npm run build
+      - run: npm run fetch:model
+      - run: npm test
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

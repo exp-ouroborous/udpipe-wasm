@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # Emscripten validated locally at 6.0.1; pin to match. Adjust if the tag
+      # is unavailable on the runner.
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 6.0.1
+      - run: npm ci
+      - run: npm run build        # clones pinned UDPipe, compiles wasm, builds dist
+      - run: npm run fetch:model  # ~16 MB english-ewt model for the e2e test
+      - run: npm test
